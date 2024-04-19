@@ -56,6 +56,90 @@ def main():
     random_randn_array = np.random.randn(6)
     print("random randn \n {}".format(random_randn_array)) 
 
+    #random integer numpy random randint 
+    random_int = np.random.randint(1,6) # (1, 6) = 1 ~ 5, (6) = 0 ~ 5
+    print("random int {} ".format(random_int))
+    print("random int {} ( 10~14, 5 numbers random variable [x, x, x, x, x] )".format(np.random.randint(10, 15, 5)))
+
+    #numpy dimension, shape 
+    np_array_of_value = np.array([10, 12, 14, 16, 18, 20])
+    print("numpy array {} ".format(np_array_of_value))
+    print("numpy dimension {}, shape {} ".format(np_array_of_value.ndim, np_array_of_value.shape))
+    for i in np_array_of_value:
+        print(i, end=' ')
+    print("\narray append {} + [22, 24] -> {}".format(np_array_of_value, np.append(np_array_of_value, [22, 24])))
+    print("\nnumpy range area {}".format( np.arange(10,21,2) ))
+
+    #array row (4), column (5)
+    print("\nnumpy array row, column\n {} ".format( np.random.randint(1, 11, size = (4, 5))))
+
+    #numpy zeros row, column 
+    print("\nnumpy zeros row, column \n {}".format(np.zeros((3, 3))))
+
+    #numpy append to array, axis = 0 -> x axis
+    nparray = np.zeros((3, 3))
+    value_x_axis = np.append(nparray ,[[1, 2, 3]], axis =0)
+    print("\nnumpy append row, column \n {}".format(value_x_axis))
+
+    '''
+    numpy append row, column 
+    [[0. 0. 0.]
+    [0. 0. 0.]
+    [0. 0. 0.]
+    [1. 2. 3.]]
+    '''
+
+    #numpy append to array, axis = 1 -> y axis 
+    value_y_axis = np.append(nparray, [[1], [2], [3]], axis = 1)
+    print("\nnumpy append row, column \n {}".format(value_y_axis))
+
+    '''
+    numpy append row, column 
+    [[0. 0. 0. 1.]
+    [0. 0. 0. 2.]
+    [0. 0. 0. 3.]]
+    '''
+
+    # delete array 
+    delete_array = np.array(["Red", "Green", "Orange"])
+    print("delete array {}\n".format(delete_array))
+    #delete array ['Red' 'Green' 'Orange']
+
+    deleted_array = np.delete(delete_array, 1)
+    print("deleted array {}\n".format(deleted_array))
+    #deleted array ['Red' 'Orange']
+
+    deleted_array_set_position = np.delete(delete_array, [0, 2])
+    print("deleted array set position {}\n".format(deleted_array_set_position))
+    #deleted array set position ['Green']
+
+    array_random_for_delete = np.random.randint(1, 11, size= (4,5))
+    print("set array for delete axis \n {}\n".format(array_random_for_delete))
+    print("delete axis x \n{}\n".format(np.delete(array_random_for_delete, 1, axis = 0)))
+    print("delete axis y \n{}\n".format(np.delete(array_random_for_delete, 1, axis = 1)))
+
+    '''
+    set array for delete axis 
+    [[ 4  3  8  3  1]
+    [ 1  5  6  6  7]
+    [ 9  5  2  5 10]
+    [ 9  2  2  8 10]]
+
+    delete axis x 
+    [[ 4  3  8  3  1]
+    [ 9  5  2  5 10]
+    [ 9  2  2  8 10]]
+
+    delete axis y 
+    [[ 4  8  3  1]
+    [ 1  6  6  7]
+    [ 9  2  5 10]
+    [ 9  2  8 10]]
+    '''
+
+
+
+
 if __name__ == "__main__":
     main()
 
