@@ -12,6 +12,22 @@ def array_sort_test():
     arange_array = array_sort[:, ::-1]
     print("array[:, ::-1] \n{}\n".format(arange_array))
 
+    '''
+    input array : 
+    [[ 3  4  7]
+    [13  5  6]
+    [10 11  9]]
+
+    array.sort() result 
+    [[ 3  4  7]
+    [ 5  6 13]
+    [ 9 10 11]]
+
+    array[:, ::1] 
+    [[ 7  4  3]
+    [13  6  5]
+    [11 10  9]]
+    '''
     
 def dimension_test():
     array_dimension = np.array([[3, 4, 7],
