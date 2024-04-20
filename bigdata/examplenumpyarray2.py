@@ -17,8 +17,9 @@ def main():
     [ 1  4  4  5  7  8 10 13 16 19]
     '''
 
-    
-
+    array_boolean = np.array([False, True, False, True, False, True, False, False])
+    print("array boolean sort \n{}\n".format(np.sort(array_boolean)))
+    print("array boolean sort array.sort()\n{}\n".format(array_boolean.sort()))
 
 
 if __name__=="__main__":
