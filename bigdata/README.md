@@ -21,3 +21,16 @@
 
 - example 
   - [numpy data type example](numpyexample.py)  
+
+## standard deviation
+
+### reference site 
+
+- [standard deviation](https://ko.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/variance-standard-deviation-population/a/calculating-standard-deviation-step-by-step)   
+  
+$$
+\frac{\sqrt{\sum{(x - \mu)^2}}}{N}
+$$
+
+- $\mu$ = average, $N$ = count of numbers
+- [example python code](./examplenumpyarray7.py)  
