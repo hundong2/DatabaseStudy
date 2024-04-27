@@ -39,13 +39,32 @@ def makerandint_withshape():
     [[ 7  8 15]
     [18  6 14]]]
     '''  
-
+def change_dimension():
+    print("\n==change dimension==\n")
+    array_value = np.random.randint(1 , 20, size=(3,6))
+    print("input array: \n{}\n".format(array_value))
+    print("array np.reshape(array, n), n = 18\n{}\n".format(np.reshape(array_value, 18)))
+    print("array np.reshape(array, -1)\n{}\n".format(np.reshape(array_value, -1)))
+    '''
+    ==change dimension==
+    input array: 
+    [[ 9 10 17  6 16 16]
+    [ 1 19  4 18 15  8]
+    [ 1  2 10  1 11  4]]
+    array np.reshape(array, n), n = 18
+    [ 9 10 17  6 16 16  1 19  4 18 15  8  1  2 10  1 11  4]
+    array np.reshape(array, -1)
+    [ 9 10 17  6 16 16  1 19  4 18 15  8  1  2 10  1 11  4]
+    '''
 def main():
     #change dimension with shape 
     changedimension()
 
     #make randint with shape
     makerandint_withshape()
+
+    #change dimension 
+    change_dimension()
 
 
 if __name__=="__main__":
