@@ -75,7 +75,138 @@ def calc_standard_deviation():
     print("calculate np.std(array, axis=1) \n{}\n".format(np.std(array_input, axis=1)))
     print("calculate np.std(array, axis=0) \n{}\n".format(np.std(array_input, axis=0)))
     print("calculate np.std(array)\n{}\n".format(np.std(array_input)))
+    '''
+    * calculate deviation
+    * calculate np.std(array, axis=1) 
+    [ 1.24721913  2.49443826 11.86029792]
+    * calculate np.std(array, axis=0) 
+    [14.71960144  8.21921867  5.55777733]
+    * calculate np.std(array)
+    10.614455552060438
+    '''
 
+def calculate_corrcoef():
+    array_first = np.array([1, 3, 0, 0.9, 1.2])
+    array_second = np.array([-1, 0.5, 0.2, 0.6, 5])
+    print("correlation coefficient\n")
+    print("input first array\n{}\ninput second array\n{}\n".format(array_first, array_second))
+    print(np.corrcoef(array_first, array_second))
+
+    '''
+    correlation coefficient
+
+    input first array
+    [1.  3.  0.  0.9 1.2]
+    input second array
+    [-1.   0.5  0.2  0.6  5. ]
+
+    [[1.         0.05708071]
+    [0.05708071 1.        ]]
+    '''
+
+def example_min_max():
+    array_minmax = np.array([2, 4, 8, 10, 12])
+    print("example min/max variable\n")
+    print("min variable {}\n".format(np.min(array_minmax)))
+    print("max variable {}\n".format(np.max(array_minmax)))
+
+def example_min_max_dimension():
+    array_minmax_dimension= np.array([[10, 12, 13], 
+                                      [20, 24, 26],
+                                      [45, 32, 16]])
+    print("input variable \n{}\n".format(array_minmax_dimension))
+    print("* np.min(array) {}\n".format(np.min(array_minmax_dimension)))
+    print("* np.max(array) {}\n".format(np.max(array_minmax_dimension)))
+    print("* np.min(array, axis=1) \n{}\n".format(np.min(array_minmax_dimension, axis=1)))
+    print("* np.min(array, axis=0) \n{}\n".format(np.min(array_minmax_dimension, axis=0)))
+    print("* np.max(array, axis=1) \n{}\n".format(np.max(array_minmax_dimension, axis=1)))
+    print("* np.max(array, axis=0) \n{}\n".format(np.max(array_minmax_dimension, axis=0)))      
+
+    '''
+    input variable 
+    [[10 12 13]
+    [20 24 26]
+    [45 32 16]]
+
+    * np.min(array) 10
+
+    * np.max(array) 45
+
+    * np.min(array, axis=1) 
+    [10 20 16]
+
+    * np.min(array, axis=0) 
+    [10 12 13]
+
+    * np.max(array, axis=1) 
+    [13 26 45]
+
+    * np.max(array, axis=0) 
+    [45 32 26]
+    '''
+
+def example_unique():
+    print("===unique array===")
+    array_unique=np.array([5,8,7,5,9,3,7,7,1,1,8,4,6,9,7,3])
+    print("input array {}\n".format(array_unique))
+    print("np.unique(array) {}\n".format(np.unique(array_unique)))
+    '''
+    ===unique array===
+    * input array [5 8 7 5 9 3 7 7 1 1 8 4 6 9 7 3]
+    * np.unique(array) [1 3 4 5 6 7 8 9]
+    '''
+def example_tuple_unique():
+    print("===tuple unique===\n")
+    array_unique=np.array([[9, 18, 2, 17],
+                           [8, 2, 18, 15],
+                           [18, 17, 17, 13]])
+    print("* input variable\n{}\n".format(array_unique))
+    print("* np.unique(array, return_counts=True)\n{}\n".format(np.unique(array_unique, return_counts= True)))
+    '''
+    ===tuple unique===
+
+    * input variable
+    [[ 9 18  2 17]
+    [ 8  2 18 15]
+    [18 17 17 13]]
+
+    * np.unique(array, return_counts=True)
+    (array([ 2,  8,  9, 13, 15, 17, 18]), array([2, 1, 1, 1, 1, 3, 3]))
+    '''
+
+def example_unique_array():
+    print("===example unique===")
+    array_unique=np.array([5,8,7,5,9,3,7,7,1,1,8,4,6,9,7,3])
+    delete_unique=np.unique(array_unique, return_counts=True)
+    print("input vairalbe {}\n".format(array_unique))
+    print("deleted unique array {}\n".format(delete_unique))
+    '''
+    ===example unique===
+    input vairalbe [5 8 7 5 9 3 7 7 1 1 8 4 6 9 7 3]
+
+    deleted unique array (array([1, 3, 4, 5, 6, 7, 8, 9]), array([2, 2, 1, 2, 1, 4, 2, 2]))
+    '''
+
+def example_axis_switching():
+    print("===axis switching===\n")
+    array_unique=np.array([5,8,7,5,9,3,7,7,1,1,8,4,6,9,7,3])
+    delete_unique=np.unique(array_unique, return_counts=True)
+    aixs_switching=np.array(delete_unique).T
+    print("changed axis \n{}\n".format(aixs_switching))
+    '''
+    ===axis switching===
+
+    changed axis 
+    [[1 2]
+    [3 2]
+    [4 1]
+    [5 2]
+    [6 1]
+    [7 4]
+    [8 2]
+    [9 2]]
+    '''
+    
 def main():
     print("statistics np\n")
     calculate_mean()
@@ -85,6 +216,13 @@ def main():
     calculate_median()
     calculate_two_dimension()
     calc_standard_deviation()
+    calculate_corrcoef()
+    example_min_max()
+    example_min_max_dimension()
+    example_unique()
+    example_tuple_unique()
+    example_unique_array()
+    example_axis_switching()
 
 if __name__=="__main__":
     main()

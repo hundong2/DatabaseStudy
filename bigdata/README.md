@@ -34,3 +34,18 @@ $$
 
 - $\mu$ = average, $N$ = count of numbers
 - [example python code](./examplenumpyarray7.py)  
+  - calc_standard_deviation function  
+
+
+## correlation coefficient (상관계수)  
+
+- 상관계수(相關係數, 영어: correlation coefficient)는 두 변수 사이의 통계적 관계를 표현하기 위해 특정한 상관 관계의 정도를 수치적으로 나타낸 계수이다.[1]  
+여러 유형의 상관계수가 존재하지만 제각기 자신들만의 정의와 특징이 있다. 이들은 모두 값의 범위가 -1에서 +1 사이에 속하며 여기서 ±1은 정도가 가장 센 잠재적 일치를 나타내고 0은 정도가 가장 센 불일치를 나타낸다.[2]  
+
+[위키백과, 우리 모두의 백과사전.](https://ko.wikipedia.org/wiki/%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98)   
+
+- [python code](./examplenumpyarray7.py)  
+  - corrcoef() function  
+
+
+
