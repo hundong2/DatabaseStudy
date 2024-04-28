@@ -1,0 +1,64 @@
+---
+title: "Rstudy2"
+author: "Lee"
+date: "2024-04-28"
+output: html_document
+---
+
+#type change function
+
+## as.vector()
+
+```
+mx <- matrix(c(23, 42, 12, 35, 67, 1, 24, 7, 53), nrow=3)
+print(mx)
+changemx <- as.vector(mx)
+print(changemx)
+```
+
+## as.integer(value)
+
+```
+changeint <- matrix(c(1.23, 2.33))
+value <- as.integer(changeint)
+print(value)
+```
+
+## as.numeric(value) 
+
+- changing numeric 
+```
+print(as.numeric(TRUE))
+print(as.numeric(FALSE))
+print(as.numeric("123"))
+print(as.numeric("2.5"))
+```
+
+## as.logical() 
+
+- FALSE: 0, 0.0 
+- anyone : TRUE
+- string -> logical 
+```
+as.logical(2.5)
+as.logical(0.0)
+```
+
+# as.Date() function
+
+- change string variable to date variable
+- normal type example
+
+```
+print(as.Date("2022-04-07"))
+```
+
+- abnormal type example
+
+```
+print(as.Date("08/13/2024", "%m/%d/%Y"))
+```
+- %m : two words numeric month
+- %d : two words numeric day
+- %Y : two words numeric year 
+
