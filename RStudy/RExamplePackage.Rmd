@@ -7,3 +7,59 @@ output: html_document
 
 # R package Example 
 
+## install package 
+
+- `install.packages("package name")`  
+
+## load package 
+
+- `library("package name")` 
+- `library(package name)`  
+
+# plyr package function
+
+- repeated working( using `apply` function and `multi-core` function )
+- it's process that change array from data and output variable at same time based on `apply` function. 
+
+## naming rule 
+
+- `(input data)(output data)ply (name of function on five words)`
+
+- adply
+  - input : array, output: data.frame
+- ldply
+  - input : list, output : data.frame
+  - two dimension data set 
+- ddply
+  - input, output : data.frame
+  - seperate date.frame -> apply function each element -> output data.frame
+
+## substr 
+
+```
+days <- c("Monday", "Tuesday", "Wednesday")
+print(substr(days, 1,2))
+```
+
+## example 
+
+```
+x <- 1:100
+sum(x>50)
+```
+
+- reuslt : 50
+
+
+```
+calculate<-function(a){
+  y=1
+  for(i in 1:a){
+    y=y*i
+  }
+  print(y)
+}
+calculate(4)
+```
+
+- result : 24
