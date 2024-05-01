@@ -35,10 +35,54 @@ $$
 \bar{x}=\frac{x_1+x_2+...+x_n}{n}=\frac{1}{n}\sum_{i=1}^{n}x_i
 $$
 
+# 데이터 퍼짐 정도 측정  
 
+- 산포도 (Dispersion)
+  - 자료의 변량들이 흩어져 있는 정도를 하나의 수로 나타낸 값
+  - 산포도가 크면 변량들이 평균으로 부터 멀리 흩어져 있고, 변동성이 커진다.  
+  - 산포도가 작으면 변량들이 평균 주위에 밀집, 변동성이 작아진다. 
+  - 범위, 사분위수 범위, 분산, 표준편차, 절대편차, 변동 계수 등이 있다. 
+
+- 범위 ( Range )
+  - `범위=최댓값-최솟값`  
+
+- 사분위수 범위( Interqualtile Range )
+  - IQR=Q3-Q1
+  - 가운데 50% 데이터가 위치하는 범위. 
+  - 이상치 검출에 사용되는 수치. 
+  - boxplot 
+
+- 편차(Deviation)
+  - `편차=변량-평균`  
+  - 어떤 자료의 변량에서 평균을 뺀값. 
+  - 편차의 총합은 항상 0. 
+  - 편차의 절댓값이 클수록 변량들은 평균에서 멀리 떨어져 있다. 
+  - 퓨ㅕㄴ차의 절댓값이 작을 수록 변량들은 평균에 가까이 있다. 
+
+- 표본 분산 (Variance) 
+  $$ 
+  s^2 = \frac{1}{n-1}\sum_{x=1}^{n}(x_i - \bar{x})^2 
+  $$
+  - 편차 제곱의 합을 자유도(n-1)로 나눈 것. 
+  - 데이터 집합이 얼마나 퍼져 있는지 알아볼 수 있는 수치. 
+  - 평균이 같아도 분산은 다를 수 있다. 
+  - example
+    - input = [1,3,5,7,9]
+    - mean = (1+3+5+7+9)/5 = 5
+    - variance = (16+4+0+4+16) / 4 = 10
+
+- 표본 표준 편차( s, Standard Deviation)
+
+  $$
+  s=\sqrt{\frac{1}{n-1}\sum_{x=1}{n}(x_i-\bar{x})^2}
+  $$
+
+  - 자료의 산포도를 나타내는 수치. 분산의 양의 제곱근을 의미한다. 
 ## reference 
 
 - https://dining-developer.tistory.com/17  
 - https://codeburst.io/2-important-statistics-terms-you-need-to-know-in-data-science-skewness-and-kurtosis-388fef94eeaa
+- 표본 분산 : https://m.blog.naver.com/sw4r/221021838997  
+
 
 
