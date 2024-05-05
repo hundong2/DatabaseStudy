@@ -23,3 +23,8 @@
 ## 확률 밀도 함수 ( Probability Density Function, PDF )
 
 - `연속 확률변수`에서 `특정 구간에 속할 확률`을 계산하기 위한 함수. 
+
+## 왜도, 첨도
+
+- https://dodonam.tistory.com/117  
+
