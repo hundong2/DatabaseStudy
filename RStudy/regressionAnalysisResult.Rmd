@@ -1,0 +1,13 @@
+# swiss data set example 
+
+```
+out <- lm(formula = Fertility ~., data=swiss)
+summary(out)
+```
+
+# orange data set 
+
+```
+outorange <- lm(formula=circumference ~ age + Tree, data = Orange )
+summary(outorange)
+```
