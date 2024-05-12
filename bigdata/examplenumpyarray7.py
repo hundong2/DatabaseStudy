@@ -192,10 +192,14 @@ def example_axis_switching():
     array_unique=np.array([5,8,7,5,9,3,7,7,1,1,8,4,6,9,7,3])
     delete_unique=np.unique(array_unique, return_counts=True)
     aixs_switching=np.array(delete_unique).T
+    print("deleted array \n{}\n".format(delete_unique))
     print("changed axis \n{}\n".format(aixs_switching))
     '''
     ===axis switching===
 
+    deleted array 
+    (array([1, 3, 4, 5, 6, 7, 8, 9]), array([2, 2, 1, 2, 1, 4, 2, 2]))
+    
     changed axis 
     [[1 2]
     [3 2]

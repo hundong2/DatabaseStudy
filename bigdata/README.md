@@ -1,3 +1,8 @@
+# doxygen 
+
+- drag & drop source code range of function or all text 
+- command key + `.` key
+
 # numpy 
 
 - Numpy array 느ㄴ 데이터 불러오기, 삽입, 삭ㅔ, 업ㅔ이트에 있어서 매우 빠름. 
@@ -47,5 +52,9 @@ $$
 - [python code](./examplenumpyarray7.py)  
   - corrcoef() function  
 
+## numpy
 
-
+- [array of numpy page - p50](./examplenumpyarray7.py)  
+  - example numpy mean, median, corrcoef, min/max, unique 
+- [array of numpy page - p60](./examplenumpyarray8.py)  
+  - example flipud, fliplr (ud : updown, lr : leftright ), upper 2 dimension 
