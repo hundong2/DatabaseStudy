@@ -58,3 +58,6 @@ $$
   - example numpy mean, median, corrcoef, min/max, unique 
 - [array of numpy page - p60](./examplenumpyarray8.py)  
   - example flipud, fliplr (ud : updown, lr : leftright ), upper 2 dimension 
+- [csv file save, load - p61](./examplenumpyarray9.py)
+  - getfromtxt, savetxt, ... 
+
