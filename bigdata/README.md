@@ -62,3 +62,5 @@ $$
   - getfromtxt, savetxt, ... 
 - [numpy calculate, page - p62~63](./examplenumpyarray10.py)  
   - sqrt, log, exp
+- [numpy array matrix calculate - p64~p65](./examplenumpyarray11.py)  
+  - np.dot
