@@ -60,4 +60,5 @@ $$
   - example flipud, fliplr (ud : updown, lr : leftright ), upper 2 dimension 
 - [csv file save, load - p61](./examplenumpyarray9.py)
   - getfromtxt, savetxt, ... 
-
+- [numpy calculate, page - p62~63](./examplenumpyarray10.py)  
+  - sqrt, log, exp
