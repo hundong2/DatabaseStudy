@@ -64,3 +64,5 @@ $$
   - sqrt, log, exp
 - [numpy array matrix calculate - p64~p65](./examplenumpyarray11.py)  
   - np.dot
+- [numpy calculate matrix - p66~67](./examplenumpyarray12.py)  
+  - matrix scalar mul
