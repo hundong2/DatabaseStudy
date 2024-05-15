@@ -66,3 +66,15 @@ $$
   - np.dot
 - [numpy calculate matrix - p66~67](./examplenumpyarray12.py)  
   - matrix scalar mul
+- [numpy linalg](./examplenumpy13.py)/ [reference site](https://rfriend.tistory.com/380)  
+  - linalg : linear algebra 
+  - Unit matrix(단위행렬) : np.eye(n)
+  - Diagnoal matrix(대각행렬) : np.diag(x)
+  - Dot product, Inner product ( 내적 ) : np.dot(a,b)
+  - Trace(대각합) : np.trace(x)
+  - Matrix Determinant ( 행렬식 ) : np.linalg.det(x)
+  - Inverse of a matrix ( 역행렬 ) : np.linalg.inv(x)  
+  - Singular Value Decomposition ( 특이값 분해 ) : u,s,vh = np.linalg.svd(A) 
+  - Solve a linear matrix equation ( 연립방벙식 해 풀기 ) : np.linalg.solve(a,b)  
+  - Compute the least-squares solution (최소자승 해 풀기) : m,c = np.linalg.lstsq(A, y, rcond=None)[0]  
+  - 
