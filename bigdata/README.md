@@ -77,4 +77,5 @@ $$
   - Singular Value Decomposition ( 특이값 분해 ) : u,s,vh = np.linalg.svd(A) 
   - Solve a linear matrix equation ( 연립방벙식 해 풀기 ) : np.linalg.solve(a,b)  
   - Compute the least-squares solution (최소자승 해 풀기) : m,c = np.linalg.lstsq(A, y, rcond=None)[0]  
-  - 
+- [example1 histogram](./examplenumpy14.py)  
+- 
