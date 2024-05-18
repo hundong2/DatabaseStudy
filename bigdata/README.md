@@ -136,3 +136,5 @@ python3 -m pip install pandas
     - df['차변금액'] = pd.to_numeric(df['차변금액'])
   - to_datetime()
     - pd.to_datetime('20201010', format='%Y%m%d')
+  - 기술통계량 (평균, 표준편차, 분산, 최대값, 최소값 ) - `describe()`
+    - `df.describe()`
