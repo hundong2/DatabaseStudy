@@ -129,3 +129,10 @@ python3 -m pip install pandas
     - dataframe.iloc([0:2,1:3]) : row - 0,1 column - 1,2
     - dataframe.loc([0:2, 1:3]) : row - 0,1,2 
 - [example csv files](https://fda.kicpa.or.kr/Board/View?BNo=470&opno=&scc=&pagenum=1&menupageno=49&pmenupageno=48)  
+- [dataframe check](./exampledataframe3.py)  
+  - astype() 
+    - `astype('int64')`, `astype('str')`, `astype('float64')`, `astype('datetime64[ns,US/Easterm]')`
+  - to_numeric()
+    - df['차변금액'] = pd.to_numeric(df['차변금액'])
+  - to_datetime()
+    - pd.to_datetime('20201010', format='%Y%m%d')
