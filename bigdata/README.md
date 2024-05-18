@@ -103,4 +103,29 @@ python3 -m pip install pandas
 ### example code 
 
 - [What's the Series library](./examplepandas1.py)  
-- 
+- [Waht's the DataFrame library](./exampledataframe.py)  
+  - two dimesion
+  - csv : Comma Seperated Value
+    - pd.read_csv(`filename`, encoding=`cp949`)
+    - filepath : full path or working folder file
+    - sep : sepearte word ( default: ',' )  
+    - encoding : `utf-8` or `cp949` ( KOR ) 
+    - nrows : read number of row ( nrows ), before big size file
+    - header : header row ( default: 0) 
+    - usecols : select column 
+    - low_memory : file chunk ( row memory use ), True or False 
+  - excel : `read_excel`
+    - filepath
+    - sheet_name : excel sheet name
+      - [0, 1, "sheet5"] : get data sheets ( dataframe ) that first, second, name of "sheet5"  
+    - usecols
+    - nrows
+    - na_values : change `NA/NaN` values to "any string" 
+      - example) na_values = ['NA'] 
+  - [from_records](./exampledataframe2.py)  
+    - `from_records()`
+      - tuple list, list of list, dictionary list, DataFrame list
+  - [dataframe example](./exampledataframe2.py)  
+    - dataframe.iloc([0:2,1:3]) : row - 0,1 column - 1,2
+    - dataframe.loc([0:2, 1:3]) : row - 0,1,2 
+- [example csv files](https://fda.kicpa.or.kr/Board/View?BNo=470&opno=&scc=&pagenum=1&menupageno=49&pmenupageno=48)  
