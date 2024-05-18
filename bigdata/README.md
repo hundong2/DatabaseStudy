@@ -81,3 +81,26 @@ $$
   - [histogram numpy.org](https://numpy.org/doc/stable/reference/generated/numpy.histogram.html)
 - [example2 histogram](./examplenumpy15.py)  
 - [practice example](./examplesolvingproblem.py)  
+
+## pandas 
+
+### pandas library 
+
+```python
+import pandas as pd
+from pandas import Series, DataFrame
+```
+
+- table data analysis library.   
+- for useful 1 dimension.  
+
+### install pandas 
+
+```sh
+python3 -m pip install pandas
+```
+
+### example code 
+
+- [What's the Series library](./examplepandas1.py)  
+- 
