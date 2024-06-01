@@ -1,0 +1,454 @@
+22 May 2024 20:19:37 >>> Bid.filter('Simple.wildcard_match(\'00\', 입찰번호, False, False)')
+22 May 2024 20:19:48 >>> Bid.clear_filter()
+22 May 2024 20:19:50 >>> Bid.filter('Simple.wildcard_match(\'00\', 입찰번호, False, False)')
+22 May 2024 20:19:50 >>> Bid.clear_filter()
+22 May 2024 20:20:29 >>> Bid.filter('\'00\' in 입찰번호')
+22 May 2024 20:20:31 >>> Bid.clear_filter()
+22 May 2024 20:20:32 >>> Bid.filter('\'00\' in 입찰번호')
+22 May 2024 20:20:33 >>> Bid.clear_filter()
+22 May 2024 20:20:48 >>> Simple.sort(Bid, True, "입찰일자")
+22 May 2024 20:20:50 >>> Simple.sort(Bid, False, "입찰일자")
+22 May 2024 20:20:53 >>> Simple.sort(Bid, True, "입찰일자")
+23 May 2024 22:04:54 >>> Bid = load("D:/workspace/DatabaseStudy/fraudit/samples/Bid.tbl")
+23 May 2024 22:04:54 >>> Bid.view()
+23 May 2024 22:05:00 >>> test = load("D:/workspace/DatabaseStudy/fraudit/samples/test.tbl")
+23 May 2024 22:05:00 >>> test.view()
+23 May 2024 22:05:02 >>> test1 = load("D:/workspace/DatabaseStudy/fraudit/samples/test1.tbl")
+23 May 2024 22:05:02 >>> test1.view()
+23 May 2024 22:07:37 >>> res1 = Simple.col_right_join(test, test1, ["A","A"])
+23 May 2024 22:07:37 >>> res1.view()
+23 May 2024 22:07:48 >>> del res1
+23 May 2024 22:08:10 >>> res1 = Simple.col_join(test, test1, ["A","A"])
+23 May 2024 22:08:10 >>> res1.view()
+23 May 2024 22:10:22 >>> del res1
+23 May 2024 22:11:37 >>> res1 = Simple.join(test, test1, 'Simple.fuzzymatch(record1.D, record2.D) >= 0.3')
+23 May 2024 22:11:37 >>> res1.view()
+23 May 2024 22:12:26 >>> del res1
+23 May 2024 22:13:34 >>> res1 = Simple.join(test, test1, "record1.A == record2.A")
+23 May 2024 22:13:34 >>> res1.view()
+23 May 2024 22:14:18 >>> del res1
+23 May 2024 22:14:19 >>> del test1
+23 May 2024 22:14:20 >>> del test
+23 May 2024 22:15:42 >>> res1 = Grouping.stratify_by_value(Bid, 0, "프로젝트번호")
+23 May 2024 22:15:42 >>> res1.view()
+23 May 2024 22:18:35 >>> res2 = Grouping.stratify_by_date(Bid, "입찰일자", 1, "M")
+23 May 2024 22:18:35 >>> res2.view()
+23 May 2024 22:20:02 >>> res3 = Grouping.stratify_by_amount(Bid, "입찰금액", [[0.0, 100000.0], [100000.0, 500000.0], [500000.0, 1000000.0], [1000000.0, 5000000.0]])
+23 May 2024 22:20:02 >>> res3.view()
+23 May 2024 22:31:47 >>> res4 = Grouping.stratify(Bid, 3)
+23 May 2024 22:31:47 >>> res4.view()
+23 May 2024 22:34:01 >>> res1.insert_column(5, "z_score", number, Simple.calc_zscore(res1, "입찰금액"))
+23 May 2024 22:34:33 >>> 통합 = res1.combine()
+23 May 2024 22:34:33 >>> 통합.view()
+23 May 2024 22:36:42 >>> summarize1 = Grouping.summarize_by_value(Bid, "프로젝트번호", 입찰금액합계="sum(group['입찰금액'])", 입찰금액최대값="max(group['입찰금액'])")
+23 May 2024 22:36:42 >>> summarize1.view()
+23 May 2024 22:37:08 >>> restr = Grouping.stratify_by_value(Bid, 0, "프로젝트번호")
+23 May 2024 22:37:09 >>> restr.view()
+23 May 2024 22:38:07 >>> summarize1.insert_index("S_INDEX")
+23 May 2024 22:38:24 >>> Simple.sort(summarize1, False, "입찰금액합계")
+23 May 2024 22:40:04 >>> sumbyDate = Grouping.summarize_by_date(Bid, "입찰일자", 1, "M", 입찰금액합계="sum(group['입찰금액'])", 입찰금액최대값="max(group['입찰금액'])")
+23 May 2024 22:40:05 >>> sumbyDate.view()
+23 May 2024 22:41:53 >>> res1listofTable = Grouping.summarize(res1, 입찰금액합계="sum(group['입찰금액'])")
+23 May 2024 22:41:53 >>> res1listofTable.view()
+23 May 2024 22:42:22 >>> test = load("D:/workspace/DatabaseStudy/fraudit/samples/test.tbl")
+23 May 2024 22:42:22 >>> test.view()
+23 May 2024 22:42:22 >>> test1 = load("D:/workspace/DatabaseStudy/fraudit/samples/test1.tbl")
+23 May 2024 22:42:23 >>> test1.view()
+23 May 2024 22:42:38 >>> testplustest1= Simple.mergeTables([test,test1])
+23 May 2024 22:42:38 >>> testplustest1.view()
+23 May 2024 22:43:41 >>> pivot = Crosstable.pivot(test, ["A"], ["C"], ["sum(group['E'])"])
+23 May 2024 22:43:42 >>> pivot.view()
+23 May 2024 22:45:18 >>> Simple.sort(test, True, "B")
+24 May 2024 11:18:18 >>> Bid_descriptives = Simple.describe(Bid)
+24 May 2024 11:18:18 >>> Bid_descriptives.view()
+24 May 2024 11:20:33 >>> test.insert_column(1, "A_Percentage", number, Simple.calc_percentage(test, "A"))
+24 May 2024 11:20:33 >>> test.set_format("A_Percentage", "0.0000%")
+24 May 2024 11:22:04 >>> test.insert_column(1, "A_Cumsum", int, Simple.calc_cumsum(test, "A"))
+24 May 2024 11:22:35 >>> test.delete_column("A_Cumsum")
+24 May 2024 11:22:46 >>> test.insert_column(1, "A_Cumsubstract", int, Simple.calc_cumsubstract(test, "A"))
+24 May 2024 11:39:20 >>> test.insert_column(1, "A_Shift", int, Simple.calc_shift(test, "A", -1))
+24 May 2024 11:41:34 >>> del test
+24 May 2024 11:41:36 >>> test = load("D:/workspace/DatabaseStudy/fraudit/samples/test.tbl")
+24 May 2024 11:41:36 >>> test.view()
+24 May 2024 11:42:32 >>> test.insert_column(1, "A_VLookup", number, Simple.calc_vlookup(test, "A", test1, "A", "E"))
+24 May 2024 11:43:59 >>> test.insert_index("S_INDEX")
+24 May 2024 11:44:31 >>> test_duplicates = Simple.find_duplicates(test, "A")
+24 May 2024 11:44:31 >>> test_duplicates.view()
+24 May 2024 11:44:54 >>> del test_duplicates
+24 May 2024 11:44:55 >>> del test
+24 May 2024 11:44:56 >>> del res1listofTable
+24 May 2024 11:44:57 >>> del sumbyDate
+24 May 2024 11:44:58 >>> del restr
+24 May 2024 11:44:59 >>> del summarize1
+24 May 2024 11:44:59 >>> del Bid_descriptives
+24 May 2024 11:45:00 >>> del Bid
+24 May 2024 11:45:04 >>> PurchaseTransaction = load("D:/workspace/DatabaseStudy/fraudit/samples/PurchaseTransaction.tbl")
+24 May 2024 11:45:04 >>> PurchaseTransaction.view()
+24 May 2024 11:45:17 >>> PurchaseTransaction_duplicates = Simple.find_duplicates(PurchaseTransaction, "거래번호")
+24 May 2024 11:45:18 >>> PurchaseTransaction_duplicates.view()
+24 May 2024 11:45:55 >>> del PurchaseTransaction_duplicates
+24 May 2024 11:46:02 >>> PurchaseTransaction.set_type(0, int, "#")
+24 May 2024 11:46:02 >>> PurchaseTransaction.set_format(0, "#")
+24 May 2024 11:46:07 >>> Simple.sort(PurchaseTransaction, True, "거래번호")
+24 May 2024 11:46:21 >>> PurchaseTransaction_gaps = Simple.find_gaps(PurchaseTransaction, True, "거래번호")
+24 May 2024 11:46:21 >>> PurchaseTransaction_gaps.view()
+24 May 2024 11:48:05 >>> Bid = load("D:/workspace/DatabaseStudy/fraudit/samples/Bid.tbl")
+24 May 2024 11:48:05 >>> Bid.view()
+24 May 2024 11:48:17 >>> del PurchaseTransaction_gaps
+24 May 2024 11:48:21 >>> Blacklist = load("D:/workspace/DatabaseStudy/fraudit/samples/Blacklist.tbl")
+24 May 2024 11:48:21 >>> Blacklist.view()
+24 May 2024 11:48:26 >>> del PurchaseTransaction
+24 May 2024 11:48:56 >>> matching = Simple.col_match_same(Bid, Blacklist, ["입찰번호","입찰자번호"])
+24 May 2024 11:48:56 >>> matching.view()
+24 May 2024 11:49:05 >>> del matching
+24 May 2024 11:49:22 >>> rese1 = Simple.col_match_same(Bid, Blacklist, ["입찰번호","입찰자번호"])
+24 May 2024 11:49:22 >>> rese1.view()
+24 May 2024 11:49:47 >>> Simple.sort(Bid, True, "입찰자번호")
+24 May 2024 11:49:52 >>> del rese1
+24 May 2024 11:50:15 >>> res1 = Simple.col_match_same(Bid, Blacklist, ["입찰자번호","입찰자번호"])
+24 May 2024 11:50:15 >>> res1.view()
+24 May 2024 11:50:17 >>> del res1
+24 May 2024 11:50:50 >>> resr1 = Simple.custom_match_same(Bid, Blacklist, "record1.입찰자번호==record2.입찰자번호")
+24 May 2024 11:50:50 >>> resr1.view()
+24 May 2024 11:53:38 >>> Bid.insert_column(5, "res2", number, Simple.calc_zscore(Bid, "입찰금액"))
+24 May 2024 11:54:33 >>> Bid_outliers = Simple.select_nonoutliers(Bid, "입찰금액", 4000000, 5000000)
+24 May 2024 11:54:33 >>> Bid_outliers.view()
+24 May 2024 11:55:30 >>> Bid_outliers_outliers = Simple.select_nonoutliers_z(Bid_outliers, "입찰금액", 1.96)
+24 May 2024 11:55:30 >>> Bid_outliers_outliers.view()
+24 May 2024 11:56:05 >>> del Bid_outliers_outliers
+24 May 2024 11:56:06 >>> del Bid_outliers
+24 May 2024 11:56:07 >>> del Bid
+24 May 2024 11:56:09 >>> Bid = load("D:/workspace/DatabaseStudy/fraudit/samples/Bid.tbl")
+24 May 2024 11:56:09 >>> Bid.view()
+24 May 2024 11:56:27 >>> Bid_outliers = Simple.select_outliers(Bid, "입찰번호", 10000, 50000000)
+24 May 2024 11:56:27 >>> Bid_outliers.view()
+24 May 2024 11:56:36 >>> del Bid_outliers
+24 May 2024 11:56:56 >>> Bid_outliers = Simple.select_outliers_z(Bid, "입찰금액", 1.96)
+24 May 2024 11:56:56 >>> Bid_outliers.view()
+24 May 2024 12:01:05 >>> del Bid_outliers
+24 May 2024 12:01:05 >>> del Bid
+24 May 2024 13:22:39 >>> 거래처 = load("D:/workspace/DatabaseStudy/fraudit/sample2/거래처.tbl")
+24 May 2024 13:22:39 >>> 거래처.view()
+24 May 2024 13:22:43 >>> 종업원 = load("D:/workspace/DatabaseStudy/fraudit/sample2/종업원.tbl")
+24 May 2024 13:22:44 >>> 종업원.view()
+24 May 2024 13:24:26 >>> res1 = Simple.col_join(종업원, 거래처, ["우편번호","우편번호"])
+24 May 2024 13:24:26 >>> res1.view()
+24 May 2024 13:26:35 >>> res2 = Simple.join(종업원, 거래처, 'Simple.fuzzymatch(record1.주, record2.주) >= 0.6 and Simple.fuzzymatch(record1.도시, record2.도시) >= 0.6 and Simple.fuzzymatch(record1.주소, record2.주소) >= 0.6')
+24 May 2024 13:26:36 >>> res2.view()
+24 May 2024 13:26:42 >>> del res2
+24 May 2024 13:28:29 >>> res2 = Simple.join(종업원, 거래처, 'Simple.fuzzymatch(record1.주, record2.주) >= 0.6 and Simple.fuzzymatch(record1.도시, record2.도시) >= 0.6 and Simple.fuzzymatch(record1.주소, record2.주소) >= 0.1')
+24 May 2024 13:28:35 >>> res2 = Simple.join(종업원, 거래처, 'Simple.fuzzymatch(record1.주, record2.주) >= 0.6 and Simple.fuzzymatch(record1.도시, record2.도시) >= 0.6 and Simple.fuzzymatch(record1.주소, record2.주소) >= 0.1')
+24 May 2024 13:28:42 >>> del res2
+24 May 2024 13:28:44 >>> res
+24 May 2024 13:28:51 >>> res2.view()
+24 May 2024 13:28:57 >>> del res2
+24 May 2024 13:29:00 >>> res2 = Simple.join(종업원, 거래처, 'Simple.fuzzymatch(record1.주, record2.주) >= 0.6 and Simple.fuzzymatch(record1.도시, record2.도시) >= 0.6 and Simple.fuzzymatch(record1.주소, record2.주소) >= 0.1')
+24 May 2024 13:29:06 >>> res2.view()
+24 May 2024 13:29:42 >>> res3 = Simple.col_match_same(거래처, 거래처, ["우편번호","우편번호"])
+24 May 2024 13:29:43 >>> res3.view()
+24 May 2024 13:30:09 >>> del res3
+24 May 2024 13:30:11 >>> del res2
+24 May 2024 13:30:14 >>> del res1
+24 May 2024 13:30:24 >>> del 종업원
+24 May 2024 13:30:25 >>> del 거래처
+24 May 2024 13:30:31 >>> 분개장예제 = load("D:/workspace/DatabaseStudy/fraudit/sample2/분개장예제.tbl")
+24 May 2024 13:30:31 >>> 분개장예제.view()
+24 May 2024 13:32:39 >>> res1 = Grouping.stratify_by_date(분개장예제, "승인일자", 1, "D")
+24 May 2024 13:32:55 >>> 분개장예제.set_type(7, DateTime, "%Y-%m-%d %H:%M:%S")
+24 May 2024 13:32:55 >>> 분개장예제.set_format(7, "%Y-%m-%d %H:%M:%S")
+24 May 2024 13:33:04 >>> 분개장예제.set_format(7, "%Y-%m-%d")
+24 May 2024 13:33:15 >>> 분개장예제.set_type(7, str, "")
+24 May 2024 13:33:15 >>> 분개장예제.set_format(7, None)
+24 May 2024 13:33:18 >>> del 분개장예제
+24 May 2024 13:33:20 >>> 분개장예제 = load("D:/workspace/DatabaseStudy/fraudit/sample2/분개장예제.tbl")
+24 May 2024 13:33:20 >>> 분개장예제.view()
+24 May 2024 13:33:32 >>> 분개장예제.set_type(7, DateTime, "%Y-%m-%d")
+24 May 2024 13:33:32 >>> 분개장예제.set_format(7, "%Y-%m-%d")
+24 May 2024 13:34:27 >>> 분개장예제.insert_calculated_static(0, "전표일자_1", str, "전표일자 ")
+24 May 2024 13:34:37 >>> 분개장예제.set_type(0, DateTime, "%Y-%m-%d")
+24 May 2024 13:34:37 >>> 분개장예제.set_format(0, "%Y-%m-%d")
+24 May 2024 13:34:54 >>> res1 = Grouping.stratify_by_date(분개장예제, "전표일자_1", 1, "D")
+24 May 2024 13:34:54 >>> res1.view()
+24 May 2024 13:36:04 >>> 분개장예제.insert_calculated_static(0, "요일", int, "전표일자_1.weekday()")
+24 May 2024 13:36:04 >>> 분개장예제.set_format(0, "#")
+24 May 2024 13:37:46 >>> resr1 = Grouping.summarize_by_value(분개장예제, "요일", 차변합계="sum(group['요일'])", record_count="count(group['차변금액'])")
+24 May 2024 13:37:46 >>> resr1.view()
+24 May 2024 13:37:52 >>> del resr1
+24 May 2024 13:38:38 >>> 분개장예제_descriptives = Simple.describe(분개장예제)
+24 May 2024 13:38:38 >>> 분개장예제_descriptives.view()
+24 May 2024 13:46:55 >>> del 분개장예제_descriptives
+24 May 2024 13:47:01 >>> del 분개장예제
+24 May 2024 13:47:03 >>> del res1
+24 May 2024 13:47:05 >>> 분개장예제 = load("D:/workspace/DatabaseStudy/fraudit/sample2/분개장예제.tbl")
+24 May 2024 13:47:05 >>> 분개장예제.view()
+24 May 2024 13:47:37 >>> 분개장예제.insert_calculated_static(0, "전표일자_1", str, "전표일자")
+24 May 2024 13:47:45 >>> 분개장예제.set_type(0, DateTime, "%Y-%m-%d")
+24 May 2024 13:47:45 >>> 분개장예제.set_format(0, "%Y-%m-%d")
+24 May 2024 13:48:40 >>> 분개장예제.insert_calculated_static(0, "요일", int, "전표일자_1.weekday()")
+24 May 2024 13:48:40 >>> 분개장예제.set_format(0, "#,###")
+24 May 2024 13:49:41 >>> resr1 = Grouping.summarize_by_value(분개장예제, "요일", 요일합계="sum(group['요일'])", 계정개수="count(group['계정코드'])")
+24 May 2024 13:49:41 >>> resr1.view()
+24 May 2024 13:49:56 >>> resr1.insert_column(1, "요일_Percentage", number, Simple.calc_percentage(resr1, "요일"))
+24 May 2024 13:49:56 >>> resr1.set_format("요일_Percentage", "0.0000%")
+24 May 2024 13:50:06 >>> resr1.insert_column(3, "요일합계_Percentage", number, Simple.calc_percentage(resr1, "요일합계"))
+24 May 2024 13:50:06 >>> resr1.set_format("요일합계_Percentage", "0.0000%")
+24 May 2024 13:50:16 >>> resr1.insert_column(5, "계정개수_Percentage", number, Simple.calc_percentage(resr1, "계정개수"))
+24 May 2024 13:50:16 >>> resr1.set_format("계정개수_Percentage", "0.0000%")
+24 May 2024 13:54:22 >>> del resr1
+24 May 2024 13:54:25 >>> del 분개장예제
+24 May 2024 13:54:29 >>> 구매거래 = load("D:/workspace/DatabaseStudy/fraudit/sample2/구매거래.tbl")
+24 May 2024 13:54:29 >>> 구매거래.view()
+24 May 2024 13:54:32 >>> del 구매거래
+24 May 2024 13:54:45 >>> 분개장예제 = load("D:/workspace/DatabaseStudy/fraudit/sample2/분개장예제.tbl")
+24 May 2024 13:54:46 >>> 분개장예제.view()
+24 May 2024 13:55:39 >>> res1 = Grouping.stratify_by_value(분개장예제, 0, "전표일자", "전표번호")
+24 May 2024 13:55:39 >>> res1.view()
+24 May 2024 13:56:49 >>> res2 = Grouping.summarize_by_value(분개장예제, "전표일자", "전표번호", 차변합계="sum(group['차변금액'])", 대변합계="sum(group['대변금액'])")
+24 May 2024 13:56:49 >>> res2.view()
+24 May 2024 13:57:56 >>> res2.insert_calculated_static(4, "비교", number, "대변합계-차변합계")
+24 May 2024 13:57:56 >>> res2.set_format(4, "#.00")
+24 May 2024 13:57:57 >>> res2 = res2.reorder_columns([ "전표일자", "전표번호", "차변합계", "대변합계", "비교" ])
+24 May 2024 13:57:57 >>> res2.view()
+24 May 2024 13:58:13 >>> res2.filter('float(차이!=0)')
+24 May 2024 13:58:28 >>> res2.filter('차이 != 0')
+24 May 2024 13:58:45 >>> del res2
+24 May 2024 13:58:47 >>> del res1
+24 May 2024 14:04:18 >>> res1 = Grouping.summarize_by_value(분개장예제, "전표일자", "전표번호", 차변1억초과빈도="count(list(filter(lambda x : x > 100000000, group[\"차변금액\"])))")
+24 May 2024 14:04:18 >>> res1.view()
+24 May 2024 14:04:39 >>> res1.insert_index("S_INDEX")
+24 May 2024 14:05:04 >>> res2 = Grouping.stratify_by_value(분개장예제, 0, "전표일자", "전표번호")
+24 May 2024 14:05:04 >>> res2.view()
+24 May 2024 14:05:18 >>> Simple.sort(res1, False, "차변1억초과빈도")
+24 May 2024 15:33:40 >>> del res2
+24 May 2024 15:33:42 >>> del res1
+24 May 2024 15:36:09 >>> rse1 = Grouping.summarize_by_value(분개장예제, "전표일자", "전표번호", ff="count(list(filter(lambda x: x> 100000000, group[\"차변금액\"])))")
+24 May 2024 15:36:09 >>> rse1.view()
+24 May 2024 15:36:55 >>> rse1.insert_index("S_INDEX")
+24 May 2024 15:37:02 >>> Simple.sort(rse1, False, "ff")
+24 May 2024 15:37:40 >>> t = Grouping.stratify_by_value(분개장예제, 0, "전표일자", "전표번호")
+24 May 2024 15:37:40 >>> t.view()
+24 May 2024 15:38:21 >>> del t
+24 May 2024 15:38:23 >>> del rse1
+24 May 2024 15:41:50 >>> res1 = Grouping.summarize_by_value(분개장예제, "전표일자", "전표번호", 계정코드번호_중복제외="count(set(group[\"계정코드\"]))")
+24 May 2024 15:41:51 >>> res1.view()
+24 May 2024 15:42:19 >>> res1.insert_index("S_INDEX")
+24 May 2024 15:42:55 >>> res2 = Grouping.stratify_by_value(분개장예제, 0, "전표일자", "전표번호")
+24 May 2024 15:42:56 >>> res2.view()
+24 May 2024 15:43:07 >>> Simple.sort(res1, True, "계정코드번호_중복제외")
+24 May 2024 15:44:27 >>> del res2
+24 May 2024 15:44:30 >>> del res1
+24 May 2024 15:48:31 >>> res1 = Grouping.summarize_by_value(분개장예제, "전표일자", "전표번호", test="count(list(filter(lambda x: x[0] == '부가세예수금' and x[1] == 0 and x[2] == , zip(group(['계정과목'], group['차변금액'],group['대변금액']))))")
+24 May 2024 15:48:31 >>> res1.view()
+24 May 2024 15:49:25 >>> res2 = Grouping.stratify_by_value(분개장예제, 0, "전표일자", "전표번호")
+24 May 2024 15:49:26 >>> res2.view()
+24 May 2024 15:49:37 >>> res1.insert_index("S_INDEX")
+24 May 2024 15:49:43 >>> Simple.sort(res1, True, "test")
+24 May 2024 15:49:45 >>> Simple.sort(res1, False, "test")
+24 May 2024 15:50:50 >>> Simple.sort(분개장예제, True, "전표번호")
+24 May 2024 15:53:59 >>> Simple.sort(res1, True, "test")
+24 May 2024 15:54:01 >>> Simple.sort(res1, False, "test")
+24 May 2024 16:07:01 >>> del res2
+24 May 2024 16:07:03 >>> del res1
+24 May 2024 16:07:47 >>> res1 = Grouping.summarize_by_value(분개장예제, "전표일자", "전표번호", 차변합계="sum(group['차변금액'])", 대변합계="sum(group['대변금액'])")
+24 May 2024 16:07:48 >>> res1.view()
+24 May 2024 16:08:05 >>> res1.set_format(2, "#,###")
+24 May 2024 16:08:16 >>> res1.set_format(3, "#,###")
+24 May 2024 16:09:37 >>> res1.insert_column(4, "차변잔액", number)
+24 May 2024 16:09:37 >>> res1.set_format(4, "#.00")
+24 May 2024 16:09:37 >>> res1.insert_column(5, "대변잔액", number)
+24 May 2024 16:09:37 >>> res1.set_format(5, "#.00")
+24 May 2024 16:09:38 >>> res1 = res1.reorder_columns([ "전표일자", "전표번호", "차변합계", "대변합계", "차변잔액", "대변잔액" ])
+24 May 2024 16:09:38 >>> res1.view()
+24 May 2024 16:09:43 >>> 래
+24 May 2024 16:14:44 >>> del res1
+24 May 2024 16:17:04 >>> 분개장예제_selected = Simple.select(분개장예제, "계정과목 == '외상매출금' or 계정과목 == '상품매출' or 계정과목 == '제품매출' ")
+24 May 2024 16:17:05 >>> 분개장예제_selected.view()
+24 May 2024 16:26:22 >>> runscript("D:/workspace/DatabaseStudy/fraudit/samples/test123.py")
+24 May 2024 16:27:01 >>> type(Simple)
+24 May 2024 16:28:28 >>> del 분개장예제_selected
+24 May 2024 16:28:31 >>> del res1
+24 May 2024 16:30:42 >>> res1 = Grouping.summarize_by_value(분개장예제, "전표일자", "전표번호", countlower="count(list(filter(lambda x: x > 0 and x%1000000 == 0, group['차변금액'])))")
+24 May 2024 16:30:42 >>> res1.view()
+24 May 2024 16:30:57 >>> res1.insert_index("S_INDEX")
+24 May 2024 16:31:11 >>> res2 = Grouping.stratify_by_value(분개장예제, 0, "전표일자", "전표번호")
+24 May 2024 16:31:11 >>> res2.view()
+24 May 2024 16:31:57 >>> Simple.sort(res1, True, "countlower")
+24 May 2024 16:31:59 >>> Simple.sort(res1, False, "countlower")
+24 May 2024 16:33:17 >>> del res2
+24 May 2024 16:33:20 >>> del res1
+24 May 2024 16:34:08 >>> del 분개장예제
+24 May 2024 16:34:16 >>> Invoice_1 = load("D:/workspace/DatabaseStudy/fraudit/sample2/Invoice_1.tbl")
+24 May 2024 16:34:16 >>> Invoice_1.view()
+24 May 2024 16:34:18 >>> Invoice_2 = load("D:/workspace/DatabaseStudy/fraudit/sample2/Invoice_2.tbl")
+24 May 2024 16:34:18 >>> Invoice_2.view()
+24 May 2024 16:35:28 >>> 조인 = Simple.col_join(Invoice_1, Invoice_2, ["송장번호","송장번호"])
+24 May 2024 16:35:28 >>> 조인.view()
+24 May 2024 16:36:24 >>> 조인.set_type(2, int, "#")
+24 May 2024 16:36:24 >>> 조인.set_format(2, "#")
+24 May 2024 16:36:24 >>> 조인.set_type(3, int, "#")
+24 May 2024 16:36:24 >>> 조인.set_format(3, "#")
+24 May 2024 16:36:24 >>> 조인.set_type(4, int, "#")
+24 May 2024 16:36:24 >>> 조인.set_format(4, "#")
+24 May 2024 16:36:24 >>> 조인.insert_calculated_static(5, "차익", int, "수표금액-송장금액")
+24 May 2024 16:36:24 >>> 조인.set_format(5, "#")
+24 May 2024 16:36:29 >>> Simple.sort(조인, False, "차익")
+24 May 2024 16:36:37 >>> 조인.filter('차이 != 0')
+24 May 2024 16:36:46 >>> 조인.filter('차익 != 0')
+24 May 2024 16:37:02 >>> del 조인
+24 May 2024 16:37:03 >>> del Invoice_2
+24 May 2024 16:37:05 >>> del Invoice_1
+24 May 2024 16:37:11 >>> 종업원 = load("D:/workspace/DatabaseStudy/fraudit/sample2/종업원.tbl")
+24 May 2024 16:37:11 >>> 종업원.view()
+24 May 2024 16:37:35 >>> PayRaise = load("D:/workspace/DatabaseStudy/fraudit/sample2/PayRaise.tbl")
+24 May 2024 16:37:36 >>> PayRaise.view()
+24 May 2024 16:37:47 >>> DupExpense = load("D:/workspace/DatabaseStudy/fraudit/sample2/DupExpense.tbl")
+24 May 2024 16:37:47 >>> DupExpense.view()
+24 May 2024 16:37:49 >>> del PayRaise
+24 May 2024 16:37:51 >>> del 종업원
+24 May 2024 16:38:27 >>> DupExpense_duplicates = Simple.find_duplicates(DupExpense, "금액")
+24 May 2024 16:38:27 >>> DupExpense_duplicates.view()
+24 May 2024 16:38:55 >>> del DupExpense_duplicates
+24 May 2024 16:39:22 >>> del DupExpense
+24 May 2024 16:39:34 >>> FindSeq = load("D:/workspace/DatabaseStudy/fraudit/sample2/FindSeq.tbl")
+24 May 2024 16:39:34 >>> FindSeq.view()
+24 May 2024 16:40:08 >>> res1 = Grouping.stratify_by_value(FindSeq, 0, "Vendor")
+24 May 2024 16:40:08 >>> res1.view()
+24 May 2024 16:40:51 >>> res1.insert_column(4, "연속", int)
+24 May 2024 16:40:51 >>> res1.set_format(4, "#")
+24 May 2024 16:43:53 >>> for i in range(len(res1)):
+    for j in range(len(res1[i])):
+        if j == 0:
+            res1[i][j]['연속'] = 0
+        else :
+            if res1[i][j]['Invoice'] == res1[i][j-1]['Invoice'] + 1:
+                res[i][j]['연속'] = 1
+            else:
+                res1[i][j]['연속'] = 0
+24 May 2024 16:45:39 >>> del res1
+24 May 2024 16:46:19 >>> res1 = Grouping.stratify_by_value(FindSeq, 0, "Date")
+24 May 2024 16:46:20 >>> res1.view()
+24 May 2024 16:46:27 >>> del res1
+24 May 2024 16:46:44 >>> res1 = Grouping.stratify_by_value(FindSeq, 0, "Vendor")
+24 May 2024 16:46:44 >>> res1.view()
+24 May 2024 16:47:19 >>> res1.insert_column(2, "Invoice_Shift", int, Simple.calc_shift(res1, "Invoice", 1))
+24 May 2024 16:47:51 >>> res1.insert_calculated_static(3, "연속", str, "Invoice-Invoice_Shift")
+24 May 2024 16:47:51 >>> res1.set_format(3, "#,##")
+25 May 2024 10:52:11 >>> 분개장_5회_01 = load_excel("C:/Users/ehdgn/Downloads/분개장_5회_01.xlsx", worksheet_name="Sheet1", header_row=True)
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(0, "전표번호")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_type("전표번호", int)
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(1, "라인번호")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_type("라인번호", int)
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(2, "전표유형")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(3, "전표구분")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(4, "증빙일자")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_type("증빙일자", DateTime)
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(5, "전표일자")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_type("전표일자", DateTime)
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(6, "전표생성자부서")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(7, "전표생성자ID")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_type("전표생성자ID", int)
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(8, "계정코드")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_type("계정코드", int)
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(9, "계정과목")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(10, "차변금액")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_type("차변금액", int)
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(11, "대변금액")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_type("대변금액", int)
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_name(12, "sub전표_인덱스")
+25 May 2024 10:52:11 >>> 분개장_5회_01.set_type("sub전표_인덱스", int)
+25 May 2024 10:52:11 >>> 분개장_5회_01.view()
+25 May 2024 10:54:59 >>> 분개장_5회_01_selected = Simple.select(분개장_5회_01, "전표번호=='영업부' and 계정과목 == '보통예금' and 차변금액 > 1000000")
+25 May 2024 10:54:59 >>> 분개장_5회_01_selected.view()
+25 May 2024 10:55:28 >>> 분개장_5회_01.insert_index("S_INDEX")
+25 May 2024 10:55:33 >>> Simple.sort(분개장_5회_01, False, "차변금액")
+25 May 2024 10:56:29 >>> 분개장_5회_01_selected = Simple.select(분개장_5회_01, "전표생성자부서=='영업부' and 계정과목 == '보통예금' and 차변금액 > 1000000")
+25 May 2024 10:56:29 >>> 분개장_5회_01_selected.view()
+25 May 2024 10:57:41 >>> res1 = Grouping.stratify_by_value(분개장_5회_01, 0, "전표생성자ID")
+25 May 2024 10:57:41 >>> res1.view()
+25 May 2024 10:58:28 >>> red = Grouping.summarize_by_value(분개장_5회_01, "전표생성자ID", all="count(group['S_INDEX'])")
+25 May 2024 10:58:28 >>> red.view()
+25 May 2024 10:58:31 >>> Simple.sort(red, False, "all")
+25 May 2024 11:00:26 >>> Simple.sort(분개장_5회_01, True, "S_INDEX")
+25 May 2024 11:01:35 >>> Simple.sort(분개장_5회_01, True, "계정코드")
+25 May 2024 11:01:55 >>> Simple.sort(분개장_5회_01, True, "전표번호")
+25 May 2024 11:05:11 >>> res3 = Grouping.summarize_by_value(분개장_5회_01, "전표번호", test="list( filter(lambda x: x['계정과목'] == '보통예금' ))")
+25 May 2024 11:05:11 >>> res3.view()
+25 May 2024 11:12:53 >>> res4 = Grouping.summarize_by_value(분개장_5회_01, "전표번호", test="count(list(filter(lambda x: ( x['계정과목'] == '보통예금' and x['차변금액'] > 0 ) or ( x['계정과목'] == '카드수수료' and x['차변금액']  > 0 ) or ( x['계정과목'] == '내수외상매출금' and x['차변금액'] > 0 ))))")
+25 May 2024 11:12:53 >>> res4.view()
+25 May 2024 11:13:57 >>> 포괄손익계산서_XBRL = load("C:/Users/ehdgn/Downloads/포괄손익계산서_XBRL.tbl")
+25 May 2024 11:13:58 >>> 포괄손익계산서_XBRL.view()
+25 May 2024 11:15:50 >>> 포괄손익계산서_XBRL_selected = Simple.select(포괄손익계산서_XBRL, "'entity' in 항목코드")
+25 May 2024 11:15:50 >>> 포괄손익계산서_XBRL_selected.view()
+25 May 2024 11:17:23 >>> 포괄손익계산서_XBRL_selected = Simple.select(포괄손익계산서_XBRL, "항목코드=='ifrs-full-ProfitLoss'")
+25 May 2024 11:17:23 >>> 포괄손익계산서_XBRL_selected.view()
+25 May 2024 11:18:03 >>> 포괄손익계산서_XBRL.filter('항목코드==\'ifrs-full_ProfitLoss\'')
+25 May 2024 11:18:31 >>> Simple.sort(포괄손익계산서_XBRL, False, "당기")
+25 May 2024 11:19:30 >>> 포괄손익계산서_XBRL.clear_filter()
+25 May 2024 11:21:26 >>> 포괄손익계산서_XBRL_selected = Simple.select(포괄손익계산서_XBRL, "항목코드 == 'ifrs-full_Revenue' and 항목코드 == 'ifrs-full_ProfitLoss'")
+25 May 2024 11:21:26 >>> 포괄손익계산서_XBRL_selected.view()
+25 May 2024 11:21:35 >>> Simple.sort(포괄손익계산서_XBRL, True, "항목코드")
+25 May 2024 11:21:38 >>> Simple.sort(포괄손익계산서_XBRL, False, "항목코드")
+25 May 2024 11:22:33 >>> 포괄손익계산서_XBRL.filter('항목코드==\'ifrs-full_ProfitLoss\'')
+25 May 2024 11:22:36 >>> 포괄손익계산서_XBRL.clear_filter()
+25 May 2024 11:23:23 >>> 포괄손익계산서_XBRL_selected = Simple.select(포괄손익계산서_XBRL, "항목코드=='ifrs-full_ProfitLoss' or 항목코드=='ifrs-full_Revenue'")
+25 May 2024 11:23:23 >>> 포괄손익계산서_XBRL_selected.view()
+25 May 2024 11:24:12 >>> Simple.sort(포괄손익계산서_XBRL_selected, False, "회사명")
+25 May 2024 11:28:25 >>> a = 포괄손익계산_XBRL_selected
+25 May 2024 11:28:52 >>> a = Simple.select(포괄손익계산서_XBRL, "항목코드=='ifrs-full_ProfitLoss' or 항목코드=='ifrs-full_Revenue'")
+25 May 2024 11:28:58 >>> a.show()
+25 May 2024 11:29:05 >>> a.view()
+25 May 2024 11:29:11 >>> Simple.sort(a, False, "회사명")
+25 May 2024 11:29:53 >>> a['회사명'] == '대호에이엘'
+25 May 2024 11:30:11 >>> Simple.sort(a, False, "당기")
+25 May 2024 11:30:30 >>> Simple.sort(a, False, "회사명")
+25 May 2024 11:30:45 >>> test = Grouping.stratify_by_value(a, 0, "회사명")
+25 May 2024 11:30:45 >>> test.view()
+25 May 2024 11:33:11 >>> test[0]
+25 May 2024 11:33:20 >>> test[0][1]
+25 May 2024 11:33:48 >>> for i in test:
+
+
+
+
+    :
+25 May 2024 11:33:54 >>> maxvalue=0
+25 May 2024 11:34:04 >>> maxcorp=""
+25 May 2024 11:35:13 >>> if i in test:
+    
+...
+25 May 2024 11:41:17 >>> for a in test:
+    a['회사명']
+25 May 2024 11:44:21 >>> test[0]['당기']
+25 May 2024 11:45:00 >>> test[0]['항목명']
+25 May 2024 11:45:54 >>> test[0][1]
+25 May 2024 11:45:59 >>> test[0][1]['항목명']
+25 May 2024 11:47:06 >>> test[0]['당기']
+25 May 2024 11:47:12 >>> test[0][1]['항목명']
+25 May 2024 11:47:16 >>> test[0][0]['항목명']
+25 May 2024 11:47:20 >>> test[0][2]['항목명']
+25 May 2024 11:47:24 >>> test[0][1]['항목명']
+25 May 2024 11:58:28 >>> 분개장_5회_01.save("C:/Users/ehdgn/Downloads/재무빅데이터시험1/분개장_5회_01.tbl")
+25 May 2024 11:58:28 >>> del 분개장_5회_01
+25 May 2024 11:58:29 >>> 분개장_5회_01 = load("C:/Users/ehdgn/Downloads/재무빅데이터시험1/분개장_5회_01.tbl")
+25 May 2024 11:58:29 >>> 분개장_5회_01.view()
+25 May 2024 11:58:31 >>> 분개장_5회_01_selected.save("C:/Users/ehdgn/Downloads/재무빅데이터시험1/분개장_5회_01_selected.tbl")
+25 May 2024 11:58:31 >>> del 분개장_5회_01_selected
+25 May 2024 11:58:32 >>> 분개장_5회_01_selected = load("C:/Users/ehdgn/Downloads/재무빅데이터시험1/분개장_5회_01_selected.tbl")
+25 May 2024 11:58:32 >>> 분개장_5회_01_selected.view()
+25 May 2024 11:58:33 >>> red.save("C:/Users/ehdgn/Downloads/재무빅데이터시험1/red.tbl")
+25 May 2024 11:58:33 >>> del red
+25 May 2024 11:58:33 >>> red = load("C:/Users/ehdgn/Downloads/재무빅데이터시험1/red.tbl")
+25 May 2024 11:58:33 >>> red.view()
+25 May 2024 11:58:34 >>> res3.save("C:/Users/ehdgn/Downloads/재무빅데이터시험1/res3.tbl")
+25 May 2024 11:58:34 >>> del res3
+25 May 2024 11:58:34 >>> res3 = load("C:/Users/ehdgn/Downloads/재무빅데이터시험1/res3.tbl")
+25 May 2024 11:58:35 >>> res3.view()
+25 May 2024 11:58:36 >>> res4.save("C:/Users/ehdgn/Downloads/재무빅데이터시험1/res4.tbl")
+25 May 2024 11:58:36 >>> del res4
+25 May 2024 11:58:36 >>> res4 = load("C:/Users/ehdgn/Downloads/재무빅데이터시험1/res4.tbl")
+25 May 2024 11:58:36 >>> res4.view()
+25 May 2024 11:58:37 >>> 포괄손익계산서_XBRL.save("C:/Users/ehdgn/Downloads/포괄손익계산서_XBRL.tbl")
+25 May 2024 11:58:38 >>> 포괄손익계산서_XBRL_selected.save("C:/Users/ehdgn/Downloads/재무빅데이터시험1/포괄손익계산서_XBRL_selected.tbl")
+25 May 2024 11:58:38 >>> del 포괄손익계산서_XBRL_selected
+25 May 2024 11:58:39 >>> 포괄손익계산서_XBRL_selected = load("C:/Users/ehdgn/Downloads/재무빅데이터시험1/포괄손익계산서_XBRL_selected.tbl")
+25 May 2024 11:58:39 >>> 포괄손익계산서_XBRL_selected.view()
